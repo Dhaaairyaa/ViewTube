@@ -6,11 +6,13 @@ import {
   toggleRecomendation,
   closeRecomendation,
 } from "../utils/recomendationSlice";
+import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
   const isshowrecomendation = useSelector(
     (store) => store.searchRecomendation.showrecomendation
   );
+
   const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef(null);
@@ -18,9 +20,20 @@ const Head = () => {
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
-
+  // const searchCache = useSelector((store) => store.search);
   useEffect(() => {
-    const timer = setTimeout(() => getSearchSuggestions(), 200);
+    const timer = setTimeout(
+      () =>
+        // if(searchCache[searchQuery]){
+        //  // make dont make api call
+        // and setSearchQuery(searchCache[searchQuery])
+        // }
+        // else{
+        //   getSearchSuggestions()
+        // }
+        getSearchSuggestions(),
+      200
+    );
     return () => {
       clearTimeout(timer);
     };
@@ -31,6 +44,13 @@ const Head = () => {
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
       const json = await data.json();
       console.log(json[1]);
+
+      //updating cache
+      dispatch(
+        cacheResults({
+          [searchQuery]: json[1],
+        })
+      );
     } catch (error) {
       console.error("Error fetching search suggestions:", error);
     }
