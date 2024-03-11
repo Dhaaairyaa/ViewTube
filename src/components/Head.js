@@ -54,7 +54,10 @@ const Head = () => {
   }, []);
 
   return (
-    <div className="grid grid-flow-col p-2 m-2 shadow-lg">
+    <div
+      className="grid grid-flow-col p-2 shadow-lg h-[70px] bg-white"
+      style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 100 }}
+    >
       <div className="flex colspan-1 items-center">
         <img
           onClick={() => toggleMenuHandler()}
@@ -89,12 +92,16 @@ const Head = () => {
         {isshowrecomendation ? (
           <div className="fixed bg-white w-[33rem] py-2 px-2 border-gray-100 border">
             <ul>
-              <li className="hover:bg-gray-300">TechBurner</li>
-              <li className="hover:bg-gray-300">Namastey JavaScript</li>
-              <li className="hover:bg-gray-300">AWS</li>
-              <li className="hover:bg-gray-300">MERN stack developer</li>
-              <li className="hover:bg-gray-300">REACT</li>
-              <li className="hover:bg-gray-300">Node</li>
+              <li className="hover:bg-gray-300 shadow-sm py-1">TechBurner</li>
+              <li className="hover:bg-gray-300 shadow-sm py-1">
+                Namastey JavaScript
+              </li>
+              <li className="hover:bg-gray-300 shadow-sm py-1">AWS</li>
+              <li className="hover:bg-gray-300 shadow-sm py-1">
+                MERN stack developer
+              </li>
+              <li className="hover:bg-gray-300 shadow-sm py-1">REACT</li>
+              <li className="hover:bg-gray-300 shadow-sm py-1">Node</li>
             </ul>
           </div>
         ) : null}
